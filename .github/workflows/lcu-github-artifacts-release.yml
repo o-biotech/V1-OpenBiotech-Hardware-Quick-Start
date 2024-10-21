@@ -5,6 +5,8 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  repository_dispatch:
+    types: [plasmic]  
   workflow_dispatch:
 
 permissions: write-all
@@ -105,7 +107,7 @@ jobs:
 
       # publish github artifacts
       - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ github.event.organization.name }}-${{ github.event.repository.name }}
           path: ${{ env.Output }}
